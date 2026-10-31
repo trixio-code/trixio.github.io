@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mémo Python Complet - De Débutant à Expert</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .code-block {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .keyword { color: #569cd6; font-weight: bold; }
+        .string { color: #ce9178; }
+        .comment { color: #6a9955; font-style: italic; }
+        .function { color: #dcdcaa; }
+        .number { color: #b5cea8; }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans min-h-screen flex flex-col">
+
+    <!-- En-tête -->
+    <header class="bg-gray-800 border-b border-gray-700 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <i class="fab fa-python text-3xl text-yellow-400"></i>
+                <h1 class="text-2xl font-bold text-white">Mémo Python Complet</h1>
+            </div>
+            <div class="w-full md:w-auto">
+                <input type="text" id="searchInput" onkeyup="filterLessons()" placeholder="Rechercher une leçon ou une notion..." class="w-full md:w-80 px-4 py-2 bg-gray-700 text-white rounded-lg border border-gray-600 focus:outline-none focus:border-yellow-400">
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenu Principal -->
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full">
+        <div class="bg-gray-800 rounded-xl p-6 shadow-xl mb-8 text-center border border-gray-700">
+            <h2 class="text-3xl font-extrabold text-white mb-2">Bienvenue sur le Guide Ultimate Python</h2>
+            <p class="text-gray-400 max-w-2xl mx-auto">Toutes les notions indispensables de Python, expliquées simplement avec des exemples de code et des exercices corrigés pour devenir un pro.</p>
+        </div>
+
+        <!-- Tableau des cours -->
+        <div class="overflow-x-auto bg-gray-800 rounded-xl border border-gray-700 shadow-xl">
+            <table class="w-full text-left border-collapse" id="lessonsTable">
+                <thead>
+                    <tr class="bg-gray-700 text-yellow-400 text-sm uppercase">
+                        <th class="py-4 px-6 font-semibold border-b border-gray-600 w-1/4">Leçons</th>
+                        <th class="py-4 px-6 font-semibold border-b border-gray-600 w-1/2">Description</th>
+                        <th class="py-4 px-6 font-semibold border-b border-gray-600 text-center w-1/4">Niveau</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-700 text-gray-300">
+                    <tr class="hover:bg-gray-750 transition">
+                        <td class="py-4 px-6 font-semibold"><a href="#variables" class="text-blue-400 hover:text-blue-300 flex items-center gap-2"><i class="fas fa-code"></i> Les variables</a></td>
+                        <td class="py-4 px-6">Apprends à déclarer et utiliser les variables pour stocker des données.</td>
+                        <td class="py-4 px-6 text-center"><span class="bg-green-900 text-green-300 text-xs px-2.5 py-1 rounded-full border border-green-700">Débutant</span></td>
+                    </tr>
+                    <tr class="hover:bg-gray-750 transition">
+                        <td class="py-4 px-6 font-semibold"><a href="#print" class="text-blue-400 hover:text-blue-300 flex items-center gap-2"><i class="fas fa-terminal"></i> print() & input()</a></td>
+                        <td class="py-4 px-6">Afficher du texte à l'écran et récupérer la saisie de l'utilisateur.</td>
+                        <td class="py-4 px-6 text-center"><span class="bg-green-900 text-green-300 text-xs px-2.5 py-1 rounded-full border border-green-700">Débutant</span></td>
+                    </tr>
+                    <tr class="hover:bg-gray-750 transition">
+                        <td class="py-4 px-6 font-semibold"><a href="#types" class="text-blue-400 hover:text-blue-300 flex items-center gap-2"><i class="fas fa-cubes"></i> Les Types de données</a></td>
+                        <td class="py-4 px-6">Découvre les int, float, str, bool et la conversion de types (casting).</td>
+                        <td class="py-4 px-6 text-center"><span class="bg-green-900 text-green-300 text-xs px-2.5 py-1 rounded-full border border-green-700">Débutant</span></td>
+                    </tr>
+                    <tr class="hover:bg-gray-750 transition">
+                        <td class="py-4 px-6 font-semibold"><a href="#conditions" class="text-blue-400 hover:text-blue-300 flex items-center gap-2"><i class="fas fa-code-branch"></i> Les Conditions</a></td>
+                        <td class="py-4 px-6">Prendre des décisions dans ton code avec if, elif et else.</td>
+                        <td class="py-4 px-6 text-center"><span class="bg-green-900 text-green-300 text-xs px-2.5 py-1 rounded-full border border-green-700">Débutant</span></td>
+                    </tr>
+                    <tr class="hover:bg-gray-750 transition">
+                        <td class="py-4 px-6 font-semibold"><a href="#boucles" class="text-blue-400 hover:text-blue-300 flex items-center gap-2"><i class="fas fa-redo"></i> Les Boucles</a></td>
+                        <td class="py-4 px-6">Répéter des instructions facilement avec for et while.</td>
+                        <td class="py-4 px-6 text-center"><span class="bg-green-900 text-green-300 text-xs px-2.5 py-1 rounded-full border border-green-700">Débutant</span></td>
+                    </tr>
+                    <tr class="hover:bg-gray-750 transition">
+                        <td class="py-4 px-6 font-semibold"><a href="#listes" class="text-blue-400 hover:text-blue-300 flex items-center gap-2"><i class="fas fa-list-ol"></i> Les Listes & Dictionnaires</a></td>
+                        <td class="py-4 px-6">Stocker et manipuler des collections de données complexes.</td>
+                        <td class="py-4 px-6 text-center"><span class="bg-yellow-900 text-yellow-300 text-xs px-2.5 py-1 rounded-full border border-yellow-700">Intermédiaire</span></td>
+                    </tr>
+                    <tr class="hover:bg-gray-750 transition">
+                        <td class="py-4 px-6 font-semibold"><a href="#fonctions" class="text-blue-400 hover:text-blue-300 flex items-center gap-2"><i class="fas fa-cogs"></i> Les Fonctions</a></td>
+                        <td class="py-4 px-6">Rendre son code propre et réutilisable grâce aux fonctions def.</td>
+                        <td class="py-4 px-6 text-center"><span class="bg-yellow-900 text-yellow-300 text-xs px-2.5 py-1 rounded-full border border-yellow-700">Intermédiaire</span></td>
+                    </tr>
+                    <tr class="hover:bg-gray-750 transition">
+                        <td class="py-4 px-6 font-semibold"><a href="#erreurs" class="text-blue-400 hover:text-blue-300 flex items-center gap-2"><i class="fas fa-bug"></i> Gestion des Erreurs</a></td>
+                        <td class="py-4 px-6">Éviter que ton programme ne plante avec try et except.</td>
+                        <td class="py-4 px-6 text-center"><span class="bg-yellow-900 text-yellow-300 text-xs px-2.5 py-1 rounded-full border border-yellow-700">Intermédiaire</span></td>
+                    </tr>
+                    <tr class="hover:bg-gray-750 transition">
+                        <td class="py-4 px-6 font-semibold"><a href="#poo" class="text-blue-400 hover:text-blue-300 flex items-center gap-2"><i class="fas fa-project-diagram"></i> La POO (Classes)</a></td>
+                        <td class="py-4 px-6">Programmation Orientée Objet : créer tes propres objets et classes.</td>
+                        <td class="py-4 px-6 text-center"><span class="bg-red-900 text-red-300 text-xs px-2.5 py-1 rounded-full border border-red-700">Avancé</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Section Leçons Détaillées & Exercices -->
+        <div class="mt-12 space-y-12">
+            
+            <!-- Leçon : Variables -->
+            <section id="variables" class="bg-gray-800 rounded-xl p-6 border border-gray-700 shadow-xl">
+                <h3 class="text-2xl font-bold text-yellow-400 mb-4 flex items-center gap-2">
+                    <i class="fas fa-code"></i> 1. Les Variables
+                </h3>
+                <p class="text-gray-300 mb-4">Une variable permet de stocker des informations sous un nom. En Python, pas besoin de spécifier le type, Python le devine tout seul.</p>
+                <div class="code-block p-4 rounded-lg relative mb-6">
+                    <button onclick="copyCode(this)" class="absolute top-3 right-3 bg-gray-700 hover:bg-gray-600 text-xs px-3 py-1 rounded text-gray-300">Copier</button>
+                    <pre><code><span class="comment"># Déclaration de variables</span>
+pseudo = <span class="string">"GamerPro"</span>
+age = <span class="number">18</span>
+taille = <span class="number">1.75</span>
+est_connecte = <span class="keyword">True</span>
+
+<span class="comment"># Afficher les valeurs</span>
+<span class="function">print</span>(pseudo)
+<span class="function">print</span>(age)</code></pre>
+                </div>
+                <!-- Exercice -->
+                <div class="bg-gray-750 p-4 rounded-lg border border-gray-600">
+                    <h4 class="font-bold text-white mb-2">💪 Exercice pratique :</h4>
+                    <p class="text-sm text-gray-300 mb-3">Crée une variable <code class="bg-gray-700 px-1 rounded text-yellow-300">prenom</code> avec ton prénom et une variable <code class="bg-gray-700 px-1 rounded text-yellow-300">annee_naissance</code>, puis affiche-les.</p>
+                    <button onclick="toggleSolution('sol-1')" class="text-xs bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold px-3 py-1.5 rounded transition">Voir la solution</button>
+                    <div id="sol-1" class="hidden mt-3 p-3 bg-gray-900 rounded border border-gray-700 text-sm">
+                        <pre class="text-gray-300"><code>prenom = "Alex"
+annee_naissance = 2005
+print(prenom, annee_naissance)</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Leçon : print & input -->
+            <section id="print" class="bg-gray-800 rounded-xl p-6 border border-gray-700 shadow-xl">
+                <h3 class="text-2xl font-bold text-yellow-400 mb-4 flex items-center gap-2">
+                    <i class="fas fa-terminal"></i> 2. print() & input()
+                </h3>
+                <p class="text-gray-300 mb-4"><code class="bg-gray-700 px-1 rounded text-yellow-300">print()</code> affiche des données et <code class="bg-gray-700 px-1 rounded text-yellow-300">input()</code> demande à l'utilisateur de taper une valeur.</p>
+                <div class="code-block p-4 rounded-lg relative mb-6">
+                    <button onclick="copyCode(this)" class="absolute top-3 right-3 bg-gray-700 hover:bg-gray-600 text-xs px-3 py-1 rounded text-gray-300">Copier</button>
+                    <pre><code><span class="comment"># Demander le nom de l'utilisateur</span>
+nom = <span class="function">input</span>(<span class="string">"Quel est ton nom ? "</span>)
+
+<span class="comment"># Afficher un message personnalisé (f-string)</span>
+<span class="function">print</span>(<span class="string">f"Bienvenue {nom} sur notre site !"</span>)</code></pre>
+                </div>
+            </section>
+
+            <!-- Leçon : Conditions -->
+            <section id="conditions" class="bg-gray-800 rounded-xl p-6 border border-gray-700 shadow-xl">
+                <h3 class="text-2xl font-bold text-yellow-400 mb-4 flex items-center gap-2">
+                    <i class="fas fa-code-branch"></i> 3. Les Conditions
+                </h3>
+                <p class="text-gray-300 mb-4">Les conditions permettent d'exécuter du code uniquement si une règle est vraie.</p>
+                <div class="code-block p-4 rounded-lg relative mb-6">
+                    <button onclick="copyCode(this)" class="absolute top-3 right-3 bg-gray-700 hover:bg-gray-600 text-xs px-3 py-1 rounded text-gray-300">Copier</button>
+                    <pre><code>age = <span class="number">16</span>
+
+<span class="keyword">if</span> age >= <span class="number">18</span>:
+    <span class="function">print</span>(<span class="string">"Tu es majeur."</span>)
+<span class="keyword">elif</span> age == <span class="number">16</span>:
+    <span class="function">print</span>(<span class="string">"Presque majeur !"</span>)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"Tu es mineur."</span>)</code></pre>
+                </div>
+                <!-- Exercice -->
+                <div class="bg-gray-750 p-4 rounded-lg border border-gray-600">
+                    <h4 class="font-bold text-white mb-2">💪 Exercice pratique :</h4>
+                    <p class="text-sm text-gray-300 mb-3">Écris un programme qui vérifie si un nombre est positif, négatif ou égal à zéro.</p>
+                    <button onclick="toggleSolution('sol-2')" class="text-xs bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold px-3 py-1.5 rounded transition">Voir la solution</button>
+                    <div id="sol-2" class="hidden mt-3 p-3 bg-gray-900 rounded border border-gray-700 text-sm">
+                        <pre class="text-gray-300"><code>nombre = -5
+
+if nombre > 0:
+    print("Positif")
+elif nombre < 0:
+    print("Négatif")
+else:
+    print("Zéro")</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Leçon : Boucles -->
+            <section id="boucles" class="bg-gray-800 rounded-xl p-6 border border-gray-700 shadow-xl">
+                <h3 class="text-2xl font-bold text-yellow-400 mb-4 flex items-center gap-2">
+                    <i class="fas fa-redo"></i> 4. Les Boucles (for & while)
+                </h3>
+                <p class="text-gray-300 mb-4">Utilise la boucle <code class="bg-gray-700 px-1 rounded text-yellow-300">for</code> pour un nombre de fois précis, et <code class="bg-gray-700 px-1 rounded text-yellow-300">while</code> pour répéter tant qu'une condition reste vraie.</p>
+                <div class="code-block p-4 rounded-lg relative mb-6">
+                    <button onclick="copyCode(this)" class="absolute top-3 right-3 bg-gray-700 hover:bg-gray-600 text-xs px-3 py-1 rounded text-gray-300">Copier</button>
+                    <pre><code><span class="comment"># Boucle for de 0 à 4</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">5</span>):
+    <span class="function">print</span>(<span class="string">f"Tour numéro {i}"</span>)
+
+<span class="comment"># Boucle while</span>
+compteur = <span class="number">3</span>
+<span class="keyword">while</span> compteur > <span class="number">0</span>:
+    <span class="function">print</span>(compteur)
+    compteur -= <span class="number">1</span></code></pre>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="bg-gray-800 border-t border-gray-700 py-6 text-center text-gray-400 text-sm mt-12">
+        <p>Projet Mémo Python complet | Conçu pour apprendre et progresser rapidement en code 🚀</p>
+    </footer>
+
+    <script>
+        // Fonction de filtrage du tableau de cours
+        function filterLessons() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let rows = document.querySelectorAll("#lessonsTable tbody tr");
+
+            rows.forEach(row => {
+                let text = row.innerText.toLowerCase();
+                if (text.includes(input)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+
+        // Fonction pour copier le code
+        function copyCode(button) {
+            let code = button.nextElementSibling.innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                button.innerText = "Copié !";
+                button.classList.add("bg-green-600");
+                setTimeout(() => {
+                    button.innerText = "Copier";
+                    button.classList.remove("bg-green-600");
+                }, 2000);
+            });
+        }
+
+        // Afficher/Masquer les solutions des exercices
+        function toggleSolution(id) {
+            let elem = document.getElementById(id);
+            elem.classList.toggle("hidden");
+        }
+    </script>
+</body>
+</html>
